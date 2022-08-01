@@ -1,4 +1,5 @@
 # Kubernetes training for developers
+Kubernetes is an open-source container orchestration system for automating software deployment, scaling, and management.
 
 ### High level overview:
 ![components-of-kubernetes](images/components-of-kubernetes.svg)
