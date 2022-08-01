@@ -11,6 +11,9 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 ### Node level overview:
 - Kubernetes
 - Container runtime
+    - containerd
+    - CRI-O
+    - Docker Engine
 - OS (mostly linux)
 
 ### Workloads
