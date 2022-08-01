@@ -42,6 +42,9 @@ helm install nginx-hello nagyzekkyandras/nginx-hello --version 0.0.1 -f my-value
 # install / upgrade from chart local folder
 helm upgrade --install -f my-values.yaml --set name=nginx-hello nginx-hello ./nginx-hello
 
+# delete installed chart
+helm uninstall nginx-hello
+
 # syntax check
 helm lint mychart/
 helm lint mychart/ --strict --with-subcharts
