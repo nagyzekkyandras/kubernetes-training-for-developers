@@ -22,7 +22,16 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 
 ### Storage
 - Storage Classes
+    - allowVolumeExpansion
 - Persistance Volumes
+    - Volume Mode
+        - Filesystem
+        - Block
+    - Access Modes
+        - RWO - ReadWriteOnce
+        - ROX - ReadOnlyMany
+        - RWX - ReadWriteMany
+        - RWOP - ReadWriteOncePod
 - Persistance Volume Claims
 
 ### Configuration
