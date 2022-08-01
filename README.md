@@ -28,29 +28,24 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 ### Configuration
 - Config Maps
 - Secrets
-
-Secret managers
-
-**Hashicorp Vault**
-
-Secure, store and tightly control access to tokens, passwords, certificates, encryption keys for protecting secrets and other sensitive data using a UI, CLI, or HTTP API.
+- Secret managers
+    - Hashicorp Vault
+        - Secure, store and tightly control access to tokens, passwords, certificates, encryption keys for protecting secrets and other sensitive data using a UI, CLI, or HTTP API.
 
 ### Network
 - Services
 - Endpoints
 - Ingress
-
-Service mesh (service networking layer)
-
-**Istio**
-- Secure cloud-native apps
-- Manage traffic effectively
-- Monitor service mesh
-- Simplify load balancing with advanced features
-- Enforce policies
+    - Service mesh (service networking layer)
+        - Istio
+            - Secure cloud-native apps
+            - Manage traffic effectively
+            - Monitor service mesh
+            - Simplify load balancing with advanced features
+            - Enforce policies
 
 ### Custom resources
-- Istio
+- Istio used / created custom resources
     - authorizationpolicies
     - destinationrules
     - envoyfilters
