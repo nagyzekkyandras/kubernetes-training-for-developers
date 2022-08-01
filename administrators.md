@@ -3,6 +3,12 @@
 # check kubernetes API health endpoints
 kubectl get --raw='/readyz?verbose'
 
+# list node labels
+kubectl get nodes --show-labels
+
+# label a node
+kubectl label nodes <my-node-name> disktype=ssd
+
 # label a namespace
 kubectl label namespace <my-namespace> istio-injection=enabled
 kubectl label namespace <my-namespace> istio-injection=enabled --overwrite
