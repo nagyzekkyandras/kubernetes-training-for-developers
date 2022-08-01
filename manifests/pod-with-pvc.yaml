@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-pvc
+spec:
+  volumes:
+    - name: pvc-name
+      persistentVolumeClaim:
+        claimName: pvc-name
+  containers:
+    - name: pod-with-pvc
+      image: busybox:latest
+      volumeMounts:
+        - mountPath: "/home"
+          subPath: pvc
+          name: pvc-name
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-name
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
