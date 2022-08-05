@@ -52,16 +52,16 @@ kubectl apply -f my-app.yaml --validate=false
 
 ### Delete
 ```bash
-# objektum tölése yaml-ből
+# delete object with yaml
 kubectl delete -f valami.yaml
 
-# adott pod törlése
+# delete pod
 kubectl delete pod <pod_neve>
 
-# adott pod törlésének force-olása
+# force delete pod
 kubectl delete pod <PODNAME> --grace-period=0 --force --namespace <NAMESPACE>
 
-# összes pod törlése
+# delete all pods
 kubectl delete pods --all
 ```
 
