@@ -1,6 +1,7 @@
 # Openshift
 
 ![what is openshift](images/openshift.png)
+
 source: http://wiki.rockplace.co.kr/display/OP/3.+Openshift+Architecture
 
 OpenShift is a family of containerization software products developed by Red Hat. Its flagship product is the OpenShift Container Platform — a hybrid cloud platform as a service built around Linux containers orchestrated and managed by Kubernetes on a foundation of Red Hat Enterprise Linux. Both Kubernetes and OpenShift feature robust and scalable architecture that enables rapid and large-scale application development, deployment, and management. Openshift provide a web interface, security options, build in docker image registry, template engine and minimal CI solution out of the box.

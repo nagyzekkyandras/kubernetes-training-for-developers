@@ -3,6 +3,7 @@ Kubernetes is an open-source container orchestration system for automating softw
 
 ### High level overview:
 ![components-of-kubernetes](images/components-of-kubernetes.svg)
+
 source: https://kubernetes.io/docs/concepts/overview/components/
 
 - Node = Worker node
