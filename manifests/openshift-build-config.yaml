@@ -1,0 +1,42 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    app: appname
+  name: appname
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+        openshift.io/imported-from: 'appname:latest'
+      from:
+        kind: DockerImage
+        name: 'appname:latest'
+      importPolicy: {}
+      name: 'latest'
+      referencePolicy:
+        type: Source
+---
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: appname
+  name: appname
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: appname:latest
+  resources: {}
+  source:
+    git:
+      ref: master
+      uri: https://github.com/mikefarah/yq
+    contextDir: /
+    type: Git
+  strategy:
+    dockerStrategy:
+    type: Docker

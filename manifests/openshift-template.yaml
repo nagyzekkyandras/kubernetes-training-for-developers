@@ -1,0 +1,134 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: mysql-server
+  annotations:
+    description: MySQL server template for sandbox environments
+objects:
+- apiVersion: v1
+  kind: Secret
+  metadata:
+    name: ${NAME_PREFIX}mysql-secret
+    labels:
+      app: mysql
+      module: ${NAME_PREFIX}mysql
+  stringData:
+    MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
+    MYSQL_USER: ${MYSQL_USER_NAME}
+    MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD}
+    MYSQL_DATABASE: ${MYSQL_DATABASE}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: ${NAME_PREFIX}mysql-pvc
+    labels:
+      app: mysql
+      module: ${NAME_PREFIX}mysql
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: ${DISK_SIZE}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: ${NAME_PREFIX}mysql-app
+    labels:
+      app: mysql
+      module: ${NAME_PREFIX}mysql
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 5
+    selector:
+      matchLabels:
+        app: mysql
+        module: ${NAME_PREFIX}mysql
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        labels:
+          app: mysql
+          module: ${NAME_PREFIX}mysql
+      spec:
+        containers:
+        - name: mysql-img
+          image: ${IMAGE}
+          imagePullPolicy: IfNotPresent
+          envFrom:
+          - secretRef:
+              name: ${NAME_PREFIX}mysql-secret
+          ports:
+          - containerPort: 3306
+            protocol: TCP
+          livenessProbe:
+            initialDelaySeconds: 30
+            tcpSocket:
+              port: 3306
+            timeoutSeconds: 1
+          volumeMounts:
+          - name: ${NAME_PREFIX}mysql-volume
+            mountPath: "/var/lib/mysql/data"
+        volumes:
+        - name: ${NAME_PREFIX}mysql-volume
+          persistentVolumeClaim:
+            claimName: ${NAME_PREFIX}mysql-pvc
+        securityContext:
+          fsGroup: ${SEC_CONTEXT}
+          runAsUser: ${SEC_CONTEXT}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: ${NAME_PREFIX}mysql-service
+    labels:
+      app: mysql
+      module: ${NAME_PREFIX}mysql
+  spec:
+    ports:
+    - name: http-mysql
+      port: 3306
+    selector:
+      app: mysql
+      module: ${NAME_PREFIX}mysql
+parameters:
+  - name: ROOT_PASSWORD
+    diplayName: ROOT_PASSWORD
+    description: The root user password
+    value: 
+    required: true
+  - name: MYSQL_USER_NAME
+    diplayName: MYSQL_USER_NAME
+    description: The default user name
+    value: 
+    required: true
+  - name: MYSQL_USER_PASSWORD
+    diplayName: MYSQL_USER_PASSWORD
+    description: The default user password
+    value: 
+    required: true
+  - name: MYSQL_DATABASE
+    diplayName: MYSQL_DATABASE
+    description: The default database name
+    value: 
+    required: true
+  - name: DISK_SIZE
+    diplayName: DISK_SIZE
+    description: The server disk size
+    value: 2Gi
+    required: true
+  - name: IMAGE
+    diplayName: IMAGE
+    description: IMAGE your docker image
+    value: docker-registry.default.svc:5000/openshift/mysql
+    required: true
+  - name: SEC_CONTEXT
+    diplayName: SEC_CONTEXT
+    description: SEC_CONTEXT if needed
+    value: 1001
+    required: false
+  - name: NAME_PREFIX
+    diplayName: NAME_PREFIX
+    description: NAME_PREFIX if needed
+    value: 
+    required: false

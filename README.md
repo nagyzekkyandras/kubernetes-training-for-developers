@@ -82,8 +82,11 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 |helm | The package manager for Kubernetes. https://github.com/helm/helm |
 |lens | Kubernetes Lens is an effective, open-source IDE for Kubernetes. https://github.com/lensapp/lens |
 |Rancher Desktop | Container Management and Kubernetes on the Desktop https://github.com/rancher-sandbox/rancher-desktop/ |
+|oc | The OpenShift Command Line, part of OKD https://github.com/openshift/oc |
+|source-to-image | A tool for building artifacts from source and injecting into container images for Openshift https://github.com/openshift/source-to-image |
 
 ### Commands
 - [Basic kubectl (+ kubectx and kubens) commands.](./commands.md)
 - [Useful administrator commands.](./administrator_commands.md)
 - [Basic helm commands.](./helm.md)
+- [Basics of Openshift and commands.](./openshift.md)

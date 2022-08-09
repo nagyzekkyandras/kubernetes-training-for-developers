@@ -1,0 +1,54 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: vscode-server
+  annotations:
+    description: VS Code in the browser coder.com
+objects:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    labels:
+      app: code-server
+    name: code-server
+  spec:
+    lookupPolicy:
+      local: false
+    env:
+        - name: MY_NAMES
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MY_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+    tags:
+      - annotations:
+          openshift.io/generated-by: OpenShiftWebConsole
+          openshift.io/imported-from: 'code-server:latest'
+        from:
+          kind: DockerImage
+          name: 'code-server:latest'
+        importPolicy: {}
+        name: 'latest'
+        referencePolicy:
+          type: Source
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: code-server
+    name: code-server
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: code-server:latest
+    resources: {}
+    source:
+      dockerfile: "FROM codercom/code-server:latest\n\nENV GOLANG_VERSION 1.14.3\n\nENV LANG C.UTF-8\n\nENV GOPATH /go\nENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH\n\nRUN set -eux && \\\n    sudo apt-get update && \\\n    sudo apt install -y \\\n\t  xz-utils \\\n      autoconf \\\n      dpkg-dev \\\n      file \\\n      g++ \\\n      gcc \\\n      git \\\n      libc-dev \\\n      libc6-dev \\\n      make \\\n      mc \\\n      perl \\\n      pkg-config \\\n      php-common php-cli php-json php-pdo php-mysql php-zip php-gd  php-mbstring php-curl php-xml php-pear php-bcmath \\\n      python3-pip \\\n      re2c \\\n      rsync \\\n      ruby-full \\\n      tmux \\\n      vim \\\n      wget \\\n      zip unzip \\\n      ca-certificates p11-kit curl apt-transport-https lsb-release gnupg && \\\n# google-cloud-sdk + kubectl\n    sudo echo \"deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main\" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \\\n    sudo curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - && \\\n    sudo apt-get update && sudo apt-get install -y google-cloud-sdk  google-cloud-sdk-app-engine-python google-cloud-sdk-app-engine-go kubectl && \\\n# azure-cli\n    sudo curl -sL https://packages.microsoft.com/keys/microsoft.asc | \\\n    gpg --dearmor | \\\n    sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null  && \\\n    AZ_REPO=$(lsb_release -cs) && \\\n    echo \"deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main\" | \\\n    sudo tee /etc/apt/sources.list.d/azure-cli.list && \\\n    sudo apt-get update && \\\n    sudo apt-get install azure-cli && \\\n    sudo rm -rf /var/lib/apt/lists/* && \\\n# awscli jupyter\n    pip3 install  awscli jupyter\n# sdkman\nRUN sudo wget -q -O sdk.install.sh \"https://get.sdkman.io\" && \\\n    sudo bash sdk.install.sh && \\\n    sudo chmod +x /root/.sdkman/bin/sdkman-init.sh && \\\n    sudo rm -rf sdk.install.sh\n\n# oc 3.11\nRUN sudo wget -q https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz && \\\n    sudo tar -zxf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz && \\\n    cd openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit  && \\\n    sudo mv oc /usr/local/bin/ && \\\n    cd .. && \\\n    sudo rm -rf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz\n\n# go\nRUN set -eux; \\\n\t\\\n# this \"case\" statement is generated via \"update.sh\"\n\tdpkgArch=\"$(dpkg --print-architecture)\"; \\\n\tcase \"${dpkgArch##*-}\" in \\\n\t\tamd64) goRelArch='linux-amd64'; goRelSha256='1c39eac4ae95781b066c144c58e45d6859652247f7515f0d2cba7be7d57d2226' ;; \\\n\t\tarmhf) goRelArch='linux-armv6l'; goRelSha256='b1c3a648c3c8877b98dfba1996dec604c8fb8899db07994b2dfd47b0063367c8' ;; \\\n\t\tarm64) goRelArch='linux-arm64'; goRelSha256='a7a593e2ee079d83a1943edcd1c9ed2dae7529666fce04de8c142fb61c7cdd3e' ;; \\\n\t\ti386) goRelArch='linux-386'; goRelSha256='46f8c744788103e8aeceb12c7d71eb16a58fe43e7e4711055fa9ef4bae50bff7' ;; \\\n\t\tppc64el) goRelArch='linux-ppc64le'; goRelSha256='329359e2b72839696e78b6c0a96fd939e28e7435d852f31107f68037dd5f7442' ;; \\\n\t\ts390x) goRelArch='linux-s390x'; goRelSha256='1aad312fc7fa85d663e8226237cc7519b2599b88a213098abc10de8e84d6cfab' ;; \\\n\t\t*) goRelArch='src'; goRelSha256='93023778d4d1797b7bc6a53e86c3a9b150c923953225f8a48a2d5fabc971af56'; \\\n\t\t\techo >&2; echo >&2 \"warning: current architecture ($dpkgArch) does not have a corresponding Go binary release; will be building from source\"; echo >&2 ;; \\\n\tesac; \\\n\t\\\n\turl=\"https://golang.org/dl/go${GOLANG_VERSION}.${goRelArch}.tar.gz\"; \\\n\tsudo wget -q -O go.tgz \"$url\"; \\\n\techo \"${goRelSha256} *go.tgz\" | sha256sum -c -; \\\n\tsudo tar -C /usr/local -xzf go.tgz; \\\n\tsudo rm go.tgz; \\\n\t\\\n\tif [ \"$goRelArch\" = 'src' ]; then \\\n\t\techo >&2; \\\n\t\techo >&2 'error: UNIMPLEMENTED'; \\\n\t\techo >&2 'TODO install golang-any from jessie-backports for GOROOT_BOOTSTRAP (and uninstall after build)'; \\\n\t\techo >&2; \\\n\t\texit 1; \\\n\tfi; \\\n\t\\\n\texport PATH=\"/usr/local/go/bin:$PATH\"; \\\n\tgo version ; \\\n    sudo mkdir -p \"$GOPATH/src\" \"$GOPATH/bin\" && sudo chmod -R 777 \"$GOPATH\"\n"
+    strategy:
+      dockerStrategy:
+      type: Docker
+  
