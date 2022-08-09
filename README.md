@@ -91,3 +91,4 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 - [Useful administrator commands.](./administrator_commands.md)
 - [Basic helm commands.](./helm.md)
 - [Basics of Openshift and commands.](./openshift.md)
+- [Basic etcd commands.](./etcd.md)
