@@ -81,6 +81,7 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 |kubectx / kubens | Faster way to switch between clusters and namespaces in kubectl. https://github.com/ahmetb/kubectx |
 |helm | The package manager for Kubernetes. https://github.com/helm/helm |
 |lens | Kubernetes Lens is an effective, open-source IDE for Kubernetes. https://github.com/lensapp/lens |
+|Rancher Desktop | Container Management and Kubernetes on the Desktop https://github.com/rancher-sandbox/rancher-desktop/ |
 
 ### Commands
 - [Basic kubectl (+ kubectx and kubens) commands.](./commands.md)
