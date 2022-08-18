@@ -92,3 +92,4 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 - [Basic helm commands.](./helm.md)
 - [Basics of Openshift and commands.](./openshift.md)
 - [Basic etcd commands.](./etcd.md)
+- [Basics of GCP.](./gcp.md)
