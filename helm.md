@@ -62,4 +62,11 @@ helm history release-name --debug
 
 # get installed chart values
 helm get values <NAME>
+
+# helm get options:
+#  all         download all information for a named release
+#  hooks       download all hooks for a named release
+#  manifest    download the manifest for a named release
+#  notes       download the notes for a named release
+#  values      download the values file for a named release
 ```
