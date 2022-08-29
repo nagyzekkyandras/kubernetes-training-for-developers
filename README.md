@@ -91,7 +91,7 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 |source-to-image | A tool for building artifacts from source and injecting into container images for Openshift https://github.com/openshift/source-to-image |
 |pluto | A cli tool to help discover deprecated apiVersions in Kubernetes. https://github.com/FairwindsOps/Pluto |
 |kopf | A Python framework to write Kubernetes operators in just a few lines of code. https://github.com/nolar/kopf |
-|trivy | Scanner for vulnerabilities in container images, file systems, and Git repositories, as well as for configuration issues and hard-coded secrets. https://github.com/aquasecurity/trivy |
+|[trivy](./trivy.md) | Scanner for vulnerabilities in container images, file systems, and Git repositories, as well as for configuration issues and hard-coded secrets. https://github.com/aquasecurity/trivy |
 |trivy-operator | Kubernetes Operator based on the open-source container vulnerability scanner Trivy. https://github.com/devopstales/trivy-operator |
 
 ### Commands
@@ -102,3 +102,4 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 - [Basic etcd commands.](./etcd.md)
 - [Basics of GCP.](./gcp.md)
 - [Basic nova commands.](./nova.md)
+- [Basic trivy commands.](./trivy.md)

@@ -1,0 +1,22 @@
+.trivy-docker-scan:
+  image: docker:19.03.12
+  services:
+    - docker:19.03.12-dind
+  variables:
+    DOCKER_TLS_CERTDIR: ''
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_REGISTRY: ''
+    DOCKER_IMAGE_NAME: ''
+    CURRENT_VERSION: ''
+  script:
+    - docker info
+    - export TRIVY_VERSION=$(wget -qO - "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+    - echo $TRIVY_VERSION
+    - wget --no-verbose https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz -O - | tar -zxvf -
+    - echo "$DOCKER_REGISTRY_PASS" | docker login $DOCKER_REGISTRY --username $DOCKER_REGISTRY_USER --password-stdin
+    - echo "${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:$CURRENT_VERSION"
+    - docker pull "$DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$CURRENT_VERSION"
+    - ./trivy image --ignore-unfixed --severity HIGH,CRITICAL --format template --template "@contrib/junit.tpl" -o junit-report.xml "$DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$CURRENT_VERSION"
+  artifacts:
+    reports:
+      junit: junit-report.xml
