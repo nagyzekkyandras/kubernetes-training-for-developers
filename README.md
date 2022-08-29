@@ -87,7 +87,7 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 |artifacthub | Find, install and publish Kubernetes packages. https://github.com/artifacthub/hub |
 |lens | Kubernetes Lens is an effective, open-source IDE for Kubernetes. https://github.com/lensapp/lens |
 |rancher desktop | Container Management and Kubernetes on the Desktop https://github.com/rancher-sandbox/rancher-desktop/ |
-|[openshift](./openshift.md) | The OpenShift Command Line, part of OKD https://github.com/openshift/oc |
+|[oc](./openshift.md) | The OpenShift Command Line, part of OKD https://github.com/openshift/oc |
 |source-to-image | A tool for building artifacts from source and injecting into container images for Openshift https://github.com/openshift/source-to-image |
 |pluto | A cli tool to help discover deprecated apiVersions in Kubernetes. https://github.com/FairwindsOps/Pluto |
 |kopf | A Python framework to write Kubernetes operators in just a few lines of code. https://github.com/nolar/kopf |
