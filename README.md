@@ -94,8 +94,8 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 |trivy-operator | Kubernetes Operator based on the open-source container vulnerability scanner Trivy. https://github.com/devopstales/trivy-operator |
 
 ### Commands
-- [Basic kubectl (+ kubectx and kubens) commands.](./commands.md)
-- [Useful administrator commands.](./administrator_commands.md)
+- [Basic kubectl (+ kubectx and kubens) commands.](./kubectl.md)
+- [Useful administrator commands.](./kubernetes_administrator_commands.md)
 - [Basic helm commands.](./helm.md)
 - [Basics of Openshift and commands.](./openshift.md)
 - [Basic etcd commands.](./etcd.md)
