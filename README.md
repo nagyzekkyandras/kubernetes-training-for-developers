@@ -100,3 +100,4 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 - [Basics of Openshift and commands.](./openshift.md)
 - [Basic etcd commands.](./etcd.md)
 - [Basics of GCP.](./gcp.md)
+- [Basic nova commands.](./nova.md)
