@@ -89,7 +89,7 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 |rancher desktop | Container Management and Kubernetes on the Desktop https://github.com/rancher-sandbox/rancher-desktop/ |
 |[oc](./openshift.md) | The OpenShift Command Line, part of OKD https://github.com/openshift/oc |
 |source-to-image | A tool for building artifacts from source and injecting into container images for Openshift https://github.com/openshift/source-to-image |
-|pluto | A cli tool to help discover deprecated apiVersions in Kubernetes. https://github.com/FairwindsOps/Pluto |
+|[pluto](./pluto.md) | A cli tool to help discover deprecated apiVersions in Kubernetes. https://github.com/FairwindsOps/Pluto |
 |kopf | A Python framework to write Kubernetes operators in just a few lines of code. https://github.com/nolar/kopf |
 |[trivy](./trivy.md) | Scanner for vulnerabilities in container images, file systems, and Git repositories, as well as for configuration issues and hard-coded secrets. https://github.com/aquasecurity/trivy |
 |trivy-operator | Kubernetes Operator based on the open-source container vulnerability scanner Trivy. https://github.com/devopstales/trivy-operator |
@@ -101,5 +101,6 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 - [Basics of Openshift and commands.](./openshift.md)
 - [Basic etcd commands.](./etcd.md)
 - [Basics of GCP.](./gcp.md)
-- [Basic nova commands.](./nova.md)
 - [Basic trivy commands.](./trivy.md)
+- [Basic nova commands.](./nova.md)
+- [Basic pluto commands.](./pluto.md)
