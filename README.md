@@ -78,19 +78,20 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 ### Tools
 | Name | Description |
 |---|---|
-|kubectl | The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters. https://github.com/kubernetes/kubectl |
-|kubectx / kubens | Faster way to switch between clusters and namespaces in kubectl. https://github.com/ahmetb/kubectx |
+|[kubectl](./kubectl.md) | The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters. https://github.com/kubernetes/kubectl |
+|[kubectx](./kubectl.md) | The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters. https://github.com/kubernetes/kubectl / [kubens](./kubectl.md) | The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters. https://github.com/kubernetes/kubectl | Faster way to switch between clusters and namespaces in kubectl. https://github.com/ahmetb/kubectx |
 |kyverno | Kubernetes Native Policy Management. https://github.com/kyverno/kyverno |
-|helm | The package manager for Kubernetes. https://github.com/helm/helm |
+|[helm](./helm.md) | The package manager for Kubernetes. https://github.com/helm/helm |
 |reckoner | Declaratively install and manage multiple Helm chart releases. https://github.com/FairwindsOps/reckoner|
-|nova | Find outdated or deprecated Helm charts running in your cluster. https://github.com/FairwindsOps/Nova |
+|[nova](./nova.md) | Find outdated or deprecated Helm charts running in your cluster. https://github.com/FairwindsOps/Nova |
 |artifacthub | Find, install and publish Kubernetes packages. https://github.com/artifacthub/hub |
 |lens | Kubernetes Lens is an effective, open-source IDE for Kubernetes. https://github.com/lensapp/lens |
 |rancher desktop | Container Management and Kubernetes on the Desktop https://github.com/rancher-sandbox/rancher-desktop/ |
-|oc | The OpenShift Command Line, part of OKD https://github.com/openshift/oc |
+|[openshift](./openshift.md) | The OpenShift Command Line, part of OKD https://github.com/openshift/oc |
 |source-to-image | A tool for building artifacts from source and injecting into container images for Openshift https://github.com/openshift/source-to-image |
 |pluto | A cli tool to help discover deprecated apiVersions in Kubernetes. https://github.com/FairwindsOps/Pluto |
 |kopf | A Python framework to write Kubernetes operators in just a few lines of code. https://github.com/nolar/kopf |
+|trivy | Scanner for vulnerabilities in container images, file systems, and Git repositories, as well as for configuration issues and hard-coded secrets. https://github.com/aquasecurity/trivy |
 |trivy-operator | Kubernetes Operator based on the open-source container vulnerability scanner Trivy. https://github.com/devopstales/trivy-operator |
 
 ### Commands
