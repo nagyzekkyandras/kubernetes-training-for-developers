@@ -1,4 +1,7 @@
-# Commands
+# Kubernetes commands
+- kubectl
+- kubectx
+- kubens
 
 ### Namespace
 ```bash
