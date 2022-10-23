@@ -79,7 +79,7 @@ source: https://kubernetes.io/docs/concepts/overview/components/
 | Name | Description |
 |---|---|
 |[kubectl](./kubectl.md) | The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters. https://github.com/kubernetes/kubectl |
-|[kubectx](./kubectl.md) | The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters. https://github.com/kubernetes/kubectl / [kubens](./kubectl.md) | The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters. https://github.com/kubernetes/kubectl | Faster way to switch between clusters and namespaces in kubectl. https://github.com/ahmetb/kubectx |
+|[kubectx/kubens](./kubectl.md) | Faster way to switch between clusters and namespaces in kubectl. https://github.com/ahmetb/kubectx |
 |kyverno | Kubernetes Native Policy Management. https://github.com/kyverno/kyverno |
 |[helm](./helm.md) | The package manager for Kubernetes. https://github.com/helm/helm |
 |reckoner | Declaratively install and manage multiple Helm chart releases. https://github.com/FairwindsOps/reckoner|
